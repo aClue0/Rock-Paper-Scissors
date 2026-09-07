@@ -96,9 +96,8 @@ function playRound(humanChoice, computerChoice) {
 
 let humanScore = 0;
 let computerScore = 0;
+
 function playGame() {
-  let humanChoice = getHumanChoice();
-  let computerChoice = getComputerChoice();
   let isEnd = false;
 
   function isFinished(humanScore, computerScore) {
@@ -113,11 +112,9 @@ function playGame() {
     return isFinished;
   }
 
-  playRound(humanChoice, computerChoice);
-
   while (!isEnd) {
-    humanChoice = getHumanChoice();
-    computerChoice = getComputerChoice();
+    let humanChoice = getHumanChoice();
+    let computerChoice = getComputerChoice();
     playRound(humanChoice, computerChoice);
     isEnd = isFinished(humanScore, computerScore);
   }
