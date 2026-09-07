@@ -39,8 +39,8 @@ function sayDraw(humanChoice, computerChoice) {
 }
 
 function playRound(humanChoice, computerChoice) {
-  humanChoice.toLowerCase();
-  computerChoice.toLowerCase();
+  humanChoice = humanChoice.toLowerCase();
+  computerChoice = computerChoice.toLowerCase();
   console.log(
     `You chose ${humanChoice} , The computer chose ${computerChoice}.`,
   );
