@@ -124,6 +124,14 @@ function playGame() {
   humanScore = 0;
   computerScore = 0;
   console.log("Let's Play Again sometime!");
-  playGame();
 }
+
 playGame();
+
+let playAgain = confirm("Do you want to play another game?");
+
+if (playAgain) {
+  playGame();
+} else {
+  console.log("Thank you for playing!");
+}
