@@ -1,12 +1,15 @@
 // TODO: get all the buttons and paragraphs and select them
 const result = document.querySelector(".result");
 const choice = document.querySelector(".choice");
-let buttons = Array.from(document.querySelectorAll("button"));
+// FIX: get only rock, paper,scissors buttons
+const buttons = Array.from(document.querySelectorAll("button"));
 
 // TODO: get human choice
 
 let humanChoice = "";
-
+// FIX: ev.target.textContent is not reliable
+// HINT: ev.currentTarget instead of ev.target, or use a data-* attribute (like data-choice="rock") or button id/class to read intent reliably without relying on UI display labels.
+//
 buttons.forEach((button) => {
   button.addEventListener("click", (ev) => {
     switch (ev.target.textContent) {
@@ -23,7 +26,7 @@ buttons.forEach((button) => {
       default:
         break;
     }
-    playRound(humanChoice);
+    if (humanChoice) playRound(humanChoice);
   });
 });
 
@@ -71,6 +74,7 @@ function playRound(humanChoice) {
 
   console.log(humanChoice, computerChoice);
   console.log(condition);
+  //FIX: find another way to display the result and use the other paragraph
   switch (condition) {
     case 0:
       result.textContent = "It's a Draw!";
@@ -90,6 +94,7 @@ function playRound(humanChoice) {
     } else {
       result.textContent = "YOU LOSE!";
     }
+    //FIX: Add a button for resets and display the win more clearly
     humanScore = computerScore = 0;
   }
   console.log(humanScore, computerScore);
