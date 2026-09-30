@@ -29,7 +29,7 @@ buttons.addEventListener("click", (ev) => {
 // TODO: generate computer choice
 //
 
-function getComputerChoice() {
+function generateComputerChoice() {
   const randomNumber = Math.floor(Math.random() * 3 + 1);
   let computerChoice;
   switch (randomNumber) {
@@ -60,48 +60,62 @@ function handleScore(humanChoice, computerChoice) {
   else return -1;
 }
 
-function playRound(humanChoice, computerChoice) {
-  humanChoice = humanChoice.toLowerCase();
-  computerChoice = computerChoice.toLowerCase();
-
+function playRound(humanChoice) {
+  let computerChoice = generateComputerChoice();
   let condition = handleScore(humanChoice, computerChoice);
+  console.log(humanChoice, computerChoice);
+  console.log(condition);
   switch (condition) {
     case 0:
+      result.textContent = "It's a Draw!";
       break;
-
-    default:
+    case 1:
+      humanScore++;
+      result.textContent = "You win This Round!";
+      break;
+    case -1:
+      computerScore++;
+      result.textContent = "You lose this Round!";
       break;
   }
+  if (humanScore === 3 || computerScore === 3) {
+    if (humanScore > computerScore) {
+      result.textContent = "YOU WIN";
+    } else {
+      result.textContent = "YOU LOSE!";
+    }
+    humanScore = computerScore = 0;
+  }
+  console.log(humanScore, computerScore);
 }
 // TODO: Write logic to play the entire game of 5 rounds
 
 let humanScore = 0;
 let computerScore = 0;
 
-function playGame() {
-  let isEnd = false;
+// function playGame() {
+//   let isEnd = false;
 
-  function isFinished(humanScore, computerScore) {
-    let isFinished = false;
-    if (humanScore === 3) {
-      console.log("You Win!");
-      isFinished = true;
-    } else if (computerScore === 3) {
-      console.log("You Lose!");
-      isFinished = true;
-    }
-    return isFinished;
-  }
+// function isFinished(humanScore, computerScore) {
+//   let isFinished = false;
+//   if (humanScore === 3) {
+//     console.log("You Win!");
+//     isFinished = true;
+//   } else if (computerScore === 3) {
+//     console.log("You Lose!");
+//     isFinished = true;
+//   }
+//   return isFinished;
+// }
 
-  while (!isEnd) {
-    let humanChoice = getHumanChoice();
-    let computerChoice = getComputerChoice();
-    playRound(humanChoice, computerChoice);
-    isEnd = isFinished(humanScore, computerScore);
-  }
-  humanScore = 0;
-  computerScore = 0;
-  console.log("Let's Play Again sometime!");
-}
-
-playGame();
+// while (!isEnd) {
+//   let humanChoice = getHumanChoice();
+//   let computerChoice = generateComputerChoice();
+//   playRound(humanChoice, computerChoice);
+//   isEnd = isFinished(humanScore, computerScore);
+// }
+//   humanScore = 0;
+//   computerScore = 0;
+//   console.log("Let's Play Again sometime!");
+// }
+// playGame();
