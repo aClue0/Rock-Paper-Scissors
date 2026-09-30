@@ -8,22 +8,26 @@ const choice = document.querySelector(".choice");
 // TODO: get human choice
 
 let humanChoice = "";
-buttons = Array.from(document.querySelectorAll("button"));
-buttons.addEventListener("click", (ev) => {
-  switch (ev.target) {
-    case paper:
-      humanChoice = "paper";
-      break;
-    case rock:
-      humanChoice = "rock";
-      break;
-    case scissors:
-      humanChoice = "scissors";
-      break;
+let buttons = Array.from(document.querySelectorAll("button"));
 
-    default:
-      break;
-  }
+buttons.forEach((button) => {
+  button.addEventListener("click", (ev) => {
+    switch (ev.target.textContent) {
+      case "Paper":
+        humanChoice = "paper";
+        break;
+      case "Rock":
+        humanChoice = "rock";
+        break;
+      case "Scissors":
+        humanChoice = "scissors";
+        break;
+
+      default:
+        break;
+    }
+    playRound(humanChoice);
+  });
 });
 
 // TODO: generate computer choice
