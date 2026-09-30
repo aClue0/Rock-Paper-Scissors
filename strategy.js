@@ -47,7 +47,7 @@ function generateComputerChoice() {
   return computerChoice;
 }
 
-// TODO: Write logic to play round
+// TODO: Write logic to handle winning or losing
 // if winning returns 1 if losing returns -1 if draw returns 0
 function handleScore(humanChoice, computerChoice) {
   if (humanChoice === computerChoice) return 0;
@@ -61,9 +61,14 @@ function handleScore(humanChoice, computerChoice) {
   else return -1;
 }
 
+// TODO: Write logice to play round
+let humanScore = 0;
+let computerScore = 0;
+
 function playRound(humanChoice) {
   let computerChoice = generateComputerChoice();
   let condition = handleScore(humanChoice, computerChoice);
+
   console.log(humanChoice, computerChoice);
   console.log(condition);
   switch (condition) {
@@ -89,34 +94,3 @@ function playRound(humanChoice) {
   }
   console.log(humanScore, computerScore);
 }
-// TODO: Write logic to play the entire game of 5 rounds
-
-let humanScore = 0;
-let computerScore = 0;
-
-// function playGame() {
-//   let isEnd = false;
-
-// function isFinished(humanScore, computerScore) {
-//   let isFinished = false;
-//   if (humanScore === 3) {
-//     console.log("You Win!");
-//     isFinished = true;
-//   } else if (computerScore === 3) {
-//     console.log("You Lose!");
-//     isFinished = true;
-//   }
-//   return isFinished;
-// }
-
-// while (!isEnd) {
-//   let humanChoice = getHumanChoice();
-//   let computerChoice = generateComputerChoice();
-//   playRound(humanChoice, computerChoice);
-//   isEnd = isFinished(humanScore, computerScore);
-// }
-//   humanScore = 0;
-//   computerScore = 0;
-//   console.log("Let's Play Again sometime!");
-// }
-// playGame();
