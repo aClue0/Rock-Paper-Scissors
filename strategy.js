@@ -1,14 +1,11 @@
 // TODO: get all the buttons and paragraphs and select them
-const paper = document.querySelector(".paperBtn");
-const rock = document.querySelector(".rockBtn");
-const scissors = document.querySelector(".scissorsBtn");
 const result = document.querySelector(".result");
 const choice = document.querySelector(".choice");
+let buttons = Array.from(document.querySelectorAll("button"));
 
 // TODO: get human choice
 
 let humanChoice = "";
-let buttons = Array.from(document.querySelectorAll("button"));
 
 buttons.forEach((button) => {
   button.addEventListener("click", (ev) => {
