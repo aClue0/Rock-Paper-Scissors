@@ -1,3 +1,10 @@
+// TODO: get all the buttons and paragraphs and select them
+const paper = document.querySelector(".paperBtn");
+const rock = document.querySelector(".rockBtn");
+const scissors = document.querySelector(".scissorsBtn");
+const result = document.querySelector(".result");
+const choice = document.querySelector(".choice");
+
 // TODO: get human choice
 
 function getHumanChoice() {
