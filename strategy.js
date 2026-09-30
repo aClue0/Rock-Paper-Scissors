@@ -7,12 +7,27 @@ const choice = document.querySelector(".choice");
 
 // TODO: get human choice
 
-function getHumanChoice() {
-  let humanChoice = prompt("What is your choice?", " ");
-  return humanChoice;
-}
+let humanChoice = "";
+buttons = Array.from(document.querySelectorAll("button"));
+buttons.addEventListener("click", (ev) => {
+  switch (ev.target) {
+    case paper:
+      humanChoice = "paper";
+      break;
+    case rock:
+      humanChoice = "rock";
+      break;
+    case scissors:
+      humanChoice = "scissors";
+      break;
+
+    default:
+      break;
+  }
+});
 
 // TODO: generate computer choice
+//
 
 function getComputerChoice() {
   const randomNumber = Math.floor(Math.random() * 3 + 1);
@@ -32,72 +47,31 @@ function getComputerChoice() {
 }
 
 // TODO: Write logic to play round
-//
-function sayYouLose(humanChoice, computerChoice) {
-  console.log(`You lose! ${computerChoice} beats ${humanChoice}!`);
-  computerScore++;
-}
-function sayYouWin(humanChoice, computerChoice) {
-  console.log(`You win! ${humanChoice} beats ${computerChoice}!`);
-  humanScore++;
-}
-function sayDraw(humanChoice, computerChoice) {
-  console.log(`It's a draw!`);
+// if winning returns 1 if losing returns -1 if draw returns 0
+function handleScore(humanChoice, computerChoice) {
+  if (humanChoice === computerChoice) return 0;
+
+  if (
+    (humanChoice === "paper" && computerChoice === "rock") ||
+    (humanChoice === "rock" && computerChoice === "scissors") ||
+    (humanChoice === "scissors" && computerChoice === "paper")
+  )
+    return 1;
+  else return -1;
 }
 
 function playRound(humanChoice, computerChoice) {
   humanChoice = humanChoice.toLowerCase();
   computerChoice = computerChoice.toLowerCase();
-  console.log(
-    `You chose ${humanChoice} , The computer chose ${computerChoice}.`,
-  );
 
-  switch (humanChoice) {
-    case "rock":
-      switch (computerChoice) {
-        case "paper":
-          sayYouLose(humanChoice, computerChoice);
-          break;
-        case "scissors":
-          sayYouWin(humanChoice, computerChoice);
-          break;
-        case "rock":
-          sayDraw();
-          break;
-      }
+  let condition = handleScore(humanChoice, computerChoice);
+  switch (condition) {
+    case 0:
       break;
 
-    case "paper":
-      switch (computerChoice) {
-        case "paper":
-          sayDraw();
-          break;
-        case "scissors":
-          sayYouLose(humanChoice, computerChoice);
-          break;
-        case "rock":
-          sayYouWin(humanChoice, computerChoice);
-          break;
-      }
-      break;
-
-    case "scissors":
-      switch (computerChoice) {
-        case "paper":
-          sayYouWin(humanChoice, computerChoice);
-          break;
-        case "scissors":
-          sayDraw();
-          break;
-        case "rock":
-          sayYouLose(humanChoice, computerChoice);
-          break;
-      }
+    default:
       break;
   }
-  console.log(
-    `Current score is Human:${humanScore} , Computer:${computerScore}`,
-  );
 }
 // TODO: Write logic to play the entire game of 5 rounds
 
@@ -131,11 +105,3 @@ function playGame() {
 }
 
 playGame();
-
-let playAgain = confirm("Do you want to play another game?");
-
-if (playAgain) {
-  playGame();
-} else {
-  console.log("Thank you for playing!");
-}
