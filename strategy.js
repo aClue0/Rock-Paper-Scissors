@@ -7,19 +7,19 @@ const choiceButtons = Array.from(document.querySelectorAll(".choiceBtn"));
 // TODO: get human choice
 
 let humanChoice = "";
-// FIX: ev.target.textContent is not reliable
-// HINT: ev.currentTarget instead of ev.target, or use a data-* attribute (like data-choice="rock") or button id/class to read intent reliably without relying on UI display labels.
-//
-buttons.forEach((button) => {
+
+choiceButtons.forEach((button) => {
   button.addEventListener("click", (ev) => {
-    switch (ev.target.textContent) {
-      case "Paper":
+    let userChoice = ev.currentTarget.dataset.choice;
+
+    switch (userChoice) {
+      case "paper":
         humanChoice = "paper";
         break;
-      case "Rock":
+      case "rock":
         humanChoice = "rock";
         break;
-      case "Scissors":
+      case "scissors":
         humanChoice = "scissors";
         break;
 
