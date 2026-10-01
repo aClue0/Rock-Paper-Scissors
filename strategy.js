@@ -72,9 +72,8 @@ function playRound(humanChoice) {
   let computerChoice = generateComputerChoice();
   let condition = handleScore(humanChoice, computerChoice);
 
-  console.log(humanChoice, computerChoice);
-  console.log(condition);
   //FIX: find another way to display the result and use the other paragraph
+  choice.textContent = `You Chose ${humanChoice} , Computer chose ${computerChoice}`;
   switch (condition) {
     case 0:
       result.textContent = "It's a Draw!";
