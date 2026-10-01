@@ -1,8 +1,8 @@
-// TODO: get all the buttons and paragraphs and select them
+// TODO: get all the choiceButtons and paragraphs and select them
 const result = document.querySelector(".result");
 const choice = document.querySelector(".choice");
-// FIX: get only rock, paper,scissors buttons
-const buttons = Array.from(document.querySelectorAll("button"));
+
+const choiceButtons = Array.from(document.querySelectorAll(".choiceBtn"));
 
 // TODO: get human choice
 
