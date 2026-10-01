@@ -10,7 +10,9 @@ let humanChoice = "";
 
 choiceButtons.forEach((button) => {
   button.addEventListener("click", (ev) => {
-    let userChoice = ev.currentTarget.dataset.choice;
+    if (isGameOver) return;
+
+    let userChoice = ev.target.dataset.choice;
 
     switch (userChoice) {
       case "paper":
@@ -26,7 +28,7 @@ choiceButtons.forEach((button) => {
       default:
         break;
     }
-    if (humanChoice) playRound(humanChoice);
+    if (humanChoice && resetBtn) playRound(humanChoice);
   });
 });
 
@@ -67,12 +69,12 @@ function handleScore(humanChoice, computerChoice) {
 // TODO: Write logice to play round
 let humanScore = 0;
 let computerScore = 0;
+let isGameOver = false;
 
 function playRound(humanChoice) {
   let computerChoice = generateComputerChoice();
   let condition = handleScore(humanChoice, computerChoice);
 
-  //FIX: find another way to display the result and use the other paragraph
   choice.textContent = `You Chose ${humanChoice} , Computer chose ${computerChoice}`;
   switch (condition) {
     case 0:
@@ -93,8 +95,19 @@ function playRound(humanChoice) {
     } else {
       result.textContent = "YOU LOSE!";
     }
-    //FIX: Add a button for resets and display the win more clearly
-    humanScore = computerScore = 0;
+    isGameOver = true;
+    document.body.appendChild(resetBtn);
   }
-  console.log(humanScore, computerScore);
 }
+
+// TODO: make a reset button
+const resetBtn = document.createElement("button");
+resetBtn.textContent = "Play Again";
+resetBtn.addEventListener("click", (ev) => {
+  result.textContent = "Let's play another game!";
+  choice.textContent = "";
+  humanScore = 0;
+  computerScore = 0;
+  isGameOver = false;
+  resetBtn.remove();
+});
